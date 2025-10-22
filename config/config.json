@@ -1,0 +1,20 @@
+{
+  "api": {
+    "baseUrl": "https://your-1c-server.com/api",
+    "endpoints": {
+      "tasks": "/tasks",
+      "sync": "/sync",
+      "auth": "/auth"
+    }
+  },
+  "app": {
+    "name": "Task Manager",
+    "version": "1.0.0",
+    "sessionTimeout": 86400000
+  },
+  "features": {
+    "multiUser": true,
+    "offlineMode": true,
+    "syncWith1C": true
+  }
+}

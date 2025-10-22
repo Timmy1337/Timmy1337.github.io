@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="ru">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Task Manager — Многопользовательский с 1С интеграцией</title>
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="css/variables.css">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <!-- Оверлей аутентификации -->
+    <div id="authOverlay" class="auth-overlay">
+        <div class="surface auth-form">
+            <h3>Вход в Task Manager</h3>
+            <p class="auth-subtitle">Введите имя пользователя и пароль для доступа к вашим задачам</p>
+            
+            <div class="task-input-row">
+                <input type="text" id="username" placeholder="Имя пользователя" class="task-input" />
+                <input type="password" id="password" placeholder="Пароль" class="task-input" />
+            </div>
+            
+            <div class="add-button-row">
+                <button id="loginBtn" class="save">Войти</button>
+            </div>
+            
+            <div class="auth-demo">Демо-доступ: user1 / 123456</div>
+        </div>
+    </div>
+
+    <!-- Основное приложение -->
+    <div id="appRoot" class="dark">
+        <div class="surface">
+            <!-- Header -->
+            <div class="top">
+                <div class="brand">
+                    <div class="logo">TM</div>
+                    <div class="title">
+                        <h1>Task Manager</h1>
+                        <p>Пользователь: <span id="currentUserDisplay">-</span> <span id="syncStatus" class="sync-status">Офлайн</span></p>
+                    </div>
+                </div>
+
+                <div class="actions">
+                    <input id="search" class="search" placeholder="Поиск по задачам..." aria-label="Поиск" />
+                    <button id="logoutBtn" class="theme-toggle" title="Выйти" aria-label="Выйти">🚪</button>
+                    <button id="themeBtn" class="theme-toggle" title="Переключить тему" aria-label="Тема">☼</button>
+                </div>
+            </div>
+
+            <!-- Main Content -->
+            <div class="grid">
+                <!-- Left Column - Calendar & Add Task -->
+                <div class="col" id="leftCol">
+                    <h3>Календарь</h3>
+                    <div class="calendar" id="calendar"></div>
+
+                    <div class="add-task-section">
+                        <h3>Добавить задачу</h3>
+                        <div class="add-task-form">
+                            <div class="task-input-row">
+                                <input id="newDesc" type="text" placeholder="Задача" class="task-input" />
+                            </div>
+                            
+                            <div class="id-date-row">
+                                <input id="newId" type="text" placeholder="ID (напр. 11)" class="id-input" />
+                                <input id="newDate" type="text" placeholder="Дата (напр. 2025-10-16 16:30)" class="date-input" />
+                            </div>
+                            
+                            <div class="add-button-row">
+                                <button id="addBtn" class="save">Добавить</button>
+                            </div>
+                        </div>
+                        <div class="task-hint">Время можно указать после отметки задачи как выполненной.</div>
+                    </div>
+                </div>
+
+                <!-- Center Column - Tasks List -->
+                <div class="col" id="centerCol">
+                    <h3>Задачи</h3>
+                    <div class="tasks" id="tasks"></div>
+                    <div class="footer">
+                        <div>Всего: <span id="totalCount">0</span></div>
+                        <div>Выполнено: <span id="doneCount">0</span></div>
+                        <div>Часы: <span id="hoursCount">0.0</span></div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Summary -->
+                <div class="col summary" id="rightCol">
+                    <h3>Сводка</h3>
+                    <div class="stat"><div class="sub">Активные</div><div id="statActive" class="stat-value">0</div></div>
+                    <div class="stat"><div class="sub">Завершённые</div><div id="statDone" class="stat-value">0</div></div>
+                    <div class="stat"><div class="sub">Всего часов</div><div id="statHours" class="stat-value">0.0</div></div>
+                    <div class="stat sync-stat" onclick="syncWith1C()">
+                        <div class="sub">Синхронизация с 1С</div>
+                        <div class="sync-button">Обновить</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="js/utils.js"></script>
+    <script src="js/auth.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/tasks.js"></script>
+    <script src="js/sync.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>
