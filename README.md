@@ -2,6 +2,9 @@
 
 Лёгкий менеджер задач с интеграцией с 1С и акцентом на контакт-центр.
 Простой интерфейс, ручной ввод ID и даты.
+
+
+
 <img width="1536" height="1024" alt="rounded-in-photoretrica" src="https://github.com/user-attachments/assets/b530e578-ee65-4066-bf88-ea04d2401623" />
 
 <hr>
